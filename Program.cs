@@ -1,5 +1,6 @@
 ﻿using Blog.Models;
 using Blog.Repositories;
+using Blog.screens.TagScreen;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 using System;
@@ -9,43 +10,58 @@ namespace Blog
     public class Program
     {
         //mac docker
-        private const string CONNECTION_STRING = @"Server=localhost,1433;
-                                    Database=Blog;User ID=sa;Password=caroline@0701;TrustServerCertificate=True;MultiSubnetFailover=True;";
+        // private const string CONNECTION_STRING = @"Server=localhost,1433;
+        //                             Database=Blog;User ID=sa;Password=caroline@0701;TrustServerCertificate=True;MultiSubnetFailover=True;";
 
 
         //Windows
-        // private const string CONNECTION_STRING = @"Data Source=(localdb)\MSSQLLocalDB;
-        //                     Initial Catalog=Blog;Integrated Security=True;Connect Timeout=30;
-        //                     Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;
-        //                     MultiSubnetFailover=False";
+        private const string CONNECTION_STRING = @"Data Source=(localdb)\MSSQLLocalDB;
+                            Initial Catalog=Blog;Integrated Security=True;Connect Timeout=30;
+                            Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;
+                            MultiSubnetFailover=False";
 
         public static void Main(string[] args)
         {
 
-            var connection = new SqlConnection(CONNECTION_STRING);
-            connection.Open();
-            ReadUsersWithRoles(connection);
-            //ReadUsers(connection);
-            //ReadRoles(connection);
-            //ReadTags(connection);
+            DataBase.Connection = new SqlConnection(CONNECTION_STRING);
+            DataBase.Connection.Open();
 
-            //CreateUser(connection);
-            // CreateRoles(connection);
-            // CreateTags(connection);
-
-            //UpdateUsers(connection);
-            // UpdateRoles(connection);
-            // UpdateTags(connection);
+            Load();
 
 
-            //DeleteUsers(connection);
-            //DeleteRoles(connection);
-            //DeleteTags(connection);
-
-
-
-            connection.Close();
+            Console.ReadKey();
+            DataBase.Connection.Close();
         }
+
+
+        private static void Load()
+        {
+            Console.Clear();
+            Console.WriteLine("Meu Blog");
+            Console.WriteLine("-----------------");
+            Console.WriteLine("O que deseja fazer?");
+            Console.WriteLine();
+            Console.WriteLine("1 - Gestão de usuário");
+            Console.WriteLine("2 - Gestão de perfil");
+            Console.WriteLine("3 - Gestão de categoria");
+            Console.WriteLine("4 - Gestão de tag");
+            Console.WriteLine("5 - Vincular perfil/usuário");
+            Console.WriteLine("6 - Vincular post/tag");
+            Console.WriteLine("7 - Relatórios");
+            Console.WriteLine();
+            Console.WriteLine();
+            var option = short.Parse(Console.ReadLine()!);
+
+            switch (option)
+            {
+                case 4:
+                    MenuTagScreen.Load();
+                    break;
+                default: Load(); break;
+            }
+        }
+
+
 
         public static void ReadUsers(SqlConnection connection)
         {
