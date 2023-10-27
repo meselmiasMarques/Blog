@@ -9,10 +9,6 @@ namespace Blog
 {
     public class Program
     {
-        //mac docker
-        // private const string CONNECTION_STRING = @"Server=localhost,1433;
-        //                             Database=Blog;User ID=sa;Password=2345234;TrustServerCertificate=True;MultiSubnetFailover=True;";
-
 
         //Windows
         private const string CONNECTION_STRING = @"Data Source=(localdb)\MSSQLLocalDB;
