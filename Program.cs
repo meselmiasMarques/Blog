@@ -11,7 +11,7 @@ namespace Blog
     {
         //mac docker
         // private const string CONNECTION_STRING = @"Server=localhost,1433;
-        //                             Database=Blog;User ID=sa;Password=caroline@0701;TrustServerCertificate=True;MultiSubnetFailover=True;";
+        //                             Database=Blog;User ID=sa;Password=2345234;TrustServerCertificate=True;MultiSubnetFailover=True;";
 
 
         //Windows
